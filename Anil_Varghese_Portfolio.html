@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anil P Varghese — Platform &amp; AI Product Leadership</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1420;
+    --panel:#161D2C;
+    --panel-2:#1B2333;
+    --line:#2A3345;
+    --text:#EDEEF1;
+    --muted:#8B93A7;
+    --amber:#E8A33D;
+    --amber-dim:#7A5A2A;
+    --teal:#4FD1C5;
+    --teal-dim:#2E5C57;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(232,163,61,0.07), transparent 60%),
+      radial-gradient(1000px 500px at 90% 10%, rgba(79,209,197,0.06), transparent 55%),
+      var(--ink);
+    color:var(--text);
+    font-family:'IBM Plex Serif', Georgia, serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  a{color:var(--amber);}
+  a:focus-visible, button:focus-visible, .card:focus-visible{
+    outline:2px solid var(--teal);
+    outline-offset:3px;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Space Grotesk', sans-serif;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- HERO / STATUS HEADER ---------- */
+  header.status{
+    border-bottom:1px solid var(--line);
+    padding:28px 0 0 0;
+  }
+  .statusbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-bottom:22px;
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    color:var(--muted);
+  }
+  .statusbar .left{display:flex; align-items:center; gap:8px;}
+  .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--teal);
+    box-shadow:0 0 0 0 rgba(79,209,197,0.6);
+    animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(79,209,197,0.55);}
+    70%{box-shadow:0 0 0 8px rgba(79,209,197,0);}
+    100%{box-shadow:0 0 0 0 rgba(79,209,197,0);}
+  }
+  .hero-title{
+    padding:8px 0 30px 0;
+  }
+  .hero-title h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(32px, 5.6vw, 52px);
+    letter-spacing:-0.01em;
+    margin:0 0 10px 0;
+    color:var(--text);
+  }
+  .hero-title p.role{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    font-size:clamp(15px, 2.2vw, 18px);
+    color:var(--amber);
+    margin:0 0 18px 0;
+    letter-spacing:0.01em;
+  }
+  .hero-title p.thesis{
+    max-width:640px;
+    color:var(--muted);
+    font-size:16.5px;
+    margin:0;
+  }
+  .hero-title p.thesis em{color:var(--text); font-style:normal;}
+
+  /* Telemetry strip */
+  .telemetry{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    margin:30px 0 0 0;
+  }
+  .telemetry .cell{
+    padding:18px 14px;
+    border-right:1px solid var(--line);
+    text-align:left;
+  }
+  .telemetry .cell:last-child{border-right:none;}
+  .telemetry .metric{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(18px, 2.6vw, 24px);
+    color:var(--text);
+  }
+  .telemetry .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    color:var(--muted);
+    text-transform:uppercase;
+    margin-top:4px;
+  }
+  @media (max-width:700px){
+    .telemetry{grid-template-columns:repeat(2, 1fr);}
+    .telemetry .cell:nth-child(2n){border-right:none;}
+    .telemetry .cell{border-bottom:1px solid var(--line);}
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  section{padding:56px 0;}
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:0 0 8px 0;
+  }
+  .section-heading{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:clamp(22px, 3vw, 28px);
+    margin:0 0 28px 0;
+    color:var(--text);
+  }
+
+  /* ---------- MODULE CARDS ---------- */
+  .modules{display:flex; flex-direction:column; gap:18px;}
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 28px;
+    transition:border-color 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover{border-color:var(--amber-dim); transform:translateY(-2px);}
+  .card-top{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:14px;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:4px;
+    border:1px solid var(--amber-dim);
+    color:var(--amber);
+  }
+  .tag.teal{border-color:var(--teal-dim); color:var(--teal);}
+  .card h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:19px;
+    margin:0;
+    color:var(--text);
+  }
+  .card .sub{
+    color:var(--muted);
+    font-size:14px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .card p{margin:0 0 12px 0; color:var(--text); font-size:15.5px;}
+  .card p:last-of-type{margin-bottom:0;}
+  .card .stats{
+    display:flex; flex-wrap:wrap; gap:10px 22px;
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+  }
+  .card .stats div{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted);}
+  .card .stats div b{color:var(--text); font-weight:600;}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{border-left:2px solid var(--line); margin-left:6px;}
+  .tl-item{position:relative; padding:0 0 30px 26px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';
+    position:absolute; left:-7px; top:4px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--ink);
+    border:2px solid var(--amber);
+  }
+  .tl-item .yr{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted); letter-spacing:0.05em;}
+  .tl-item h4{font-family:'Space Grotesk', sans-serif; font-size:16.5px; font-weight:600; margin:4px 0 4px 0; color:var(--text);}
+  .tl-item p{margin:0; color:var(--muted); font-size:14.5px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0 60px 0;
+  }
+  .contact-grid{
+    display:flex; flex-wrap:wrap; gap:28px;
+    margin-bottom:24px;
+  }
+  .contact-grid div{font-family:'IBM Plex Mono', monospace; font-size:13.5px;}
+  .contact-grid div .k{color:var(--muted); display:block; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:4px;}
+  .contact-grid div .v a{color:var(--text); text-decoration:none; border-bottom:1px solid var(--amber-dim);}
+  .certs{color:var(--muted); font-size:13px; line-height:1.8;}
+  .certs b{color:var(--text);}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="status">
+    <div class="statusbar">
+      <div class="left">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="mono">SYSTEM: ONLINE</span>
+      </div>
+      <div class="mono">CHENNAI, IN · UPDATED JUL 2026</div>
+    </div>
+    <div class="hero-title">
+      <h1>Anil P Varghese</h1>
+      <p class="role">Platform &amp; AI Product Leadership — 23+ Years</p>
+      <p class="thesis">I build the infrastructure other products stand on, then the governance layer that makes it safe to trust. <em>Composable CI/CD at Smarsh, retail-scale observability at Lowe's, production AI governance for LLM systems.</em></p>
+    </div>
+    <div class="telemetry">
+      <div class="cell"><div class="metric">99.9%</div><div class="label">Uptime · Lowe's peak events</div></div>
+      <div class="cell"><div class="metric">200+</div><div class="label">Microservices instrumented</div></div>
+      <div class="cell"><div class="metric">100%</div><div class="label">Voluntary adoption · Flow</div></div>
+      <div class="cell"><div class="metric">15</div><div class="label">Person orgs built, twice</div></div>
+      <div class="cell"><div class="metric">7-yr</div><div class="label">AI audit trail · Gating</div></div>
+    </div>
+  </header>
+
+  <section id="modules">
+    <p class="section-label">// Case Studies</p>
+    <h2 class="section-heading">What I've built</h2>
+    <div class="modules">
+
+      <article class="card" tabindex="0">
+        <div class="card-top">
+          <h3>Flow — a CI/CD platform teams adopted by choice</h3>
+          <span class="tag">Platform</span>
+        </div>
+        <span class="sub">Founder &amp; Owner · Smarsh</span>
+        <p style="margin-top:14px;">Built on an event-driven architecture — ArgoCD, Argo Rollouts, Harbor registry, Port dashboard — Flow gave 200+ microservice teams a faster path from commit to production. No mandate. Teams migrated because it solved a real problem.</p>
+        <p>I also built the commercial side: a three-tier packaging model (General / Pro with AI confidence scoring / Enterprise with compliance built in), shaped through recurring conversations with a large bank customer, and validated a usage-based pricing model directly with banking stakeholders. That GTM and pricing work was fully planned and validated — it stopped short of execution when I exited Smarsh.</p>
+        <div class="stats">
+          <div>Adoption: <b>100% voluntary, 200+ teams</b></div>
+          <div>Cycle time: <b>3–4 days → ~4 hrs</b> (DORA-validated)</div>
+          <div>Cost: <b>~50% platform COGS reduction</b></div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-top">
+          <h3>Gating — governance for production AI</h3>
+          <span class="tag teal">Governance</span>
+        </div>
+        <span class="sub">Founder &amp; Owner · Smarsh</span>
+        <p style="margin-top:14px;">A production AI governance framework spanning confidence scoring, auto/approve/escalate routing, a seven-year audit trail, hallucination mitigation, and embedding drift detection — deployed across four production LLM capabilities.</p>
+        <p>The confidence-scoring model runs on a self-hosted Llama 3 8B, chosen over a frontier model for cost, compliance, and data control, fine-tuned with PEFT and LoRA, trained via SageMaker with a continuous data-harvesting pipeline. I separately built a small language model with confidence scoring on the same stack.</p>
+        <div class="stats">
+          <div>Capabilities governed: <b>4 production LLM systems</b></div>
+          <div>Audit retention: <b>7 years</b></div>
+          <div>Base model: <b>Self-hosted Llama 3 8B</b></div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-top">
+          <h3>Observability at retail scale</h3>
+          <span class="tag">Observability</span>
+        </div>
+        <span class="sub">Lowe's</span>
+        <p style="margin-top:14px;">Built and ran observability — Prometheus, Jaeger, Elasticsearch, Thanos — across 200+ microservices serving 17M+ weekly users, holding 99.9% uptime through peak retail events.</p>
+        <p>When a pricing lookup API began failing intermittently, the trail led to an uninstrumented DB call, an overly broad exception handler swallowing errors, and a partial Node 12/14 version split causing inconsistent MongoDB behavior. Fix: a fleet-wide Node version rollback, new tracing spans, and SLA-based alerting on customer-facing DB calls.</p>
+        <div class="stats">
+          <div>Scale: <b>17M+ weekly users</b></div>
+          <div>Reliability: <b>99.9% uptime, peak events</b></div>
+        </div>
+      </article>
+
+      <article class="card" tabindex="0">
+        <div class="card-top">
+          <h3>Building a practice from zero</h3>
+          <span class="tag">Org-Build</span>
+        </div>
+        <span class="sub">Lowe's India GCC · Smarsh Release Engineering</span>
+        <p style="margin-top:14px;">Founded Lowe's India GCC product management practice in 2016 and scaled it to a 15-person organization with direct executive reporting — recruiting and mentoring PMs, including the team behind an internal platform called Fabric, on roadmap-building and idea validation.</p>
+        <p>Separately led a 15-person Release Engineering organization at Smarsh — proof this pattern of building the team, not just the product, repeats across companies.</p>
+        <div class="stats">
+          <div>Org size: <b>15, twice, at two companies</b></div>
+          <div>Started: <b>2016, from zero</b></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="path">
+    <p class="section-label">// Career Path</p>
+    <h2 class="section-heading">How I got here</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="yr">~12 years</div>
+        <h4>FinTech infrastructure</h4>
+        <p>Citi (via Polaris), BNY Mellon (via iNautix), Barclays (via Wipro), PayPal (via CSC) — early-career depth in financial services platforms.</p>
+      </div>
+      <div class="tl-item">
+        <div class="yr">Gaming domain</div>
+        <h4>Scientific Games / Bally Technologies</h4>
+        <p>Product experience in the gaming industry, underutilized in most of my recent search but a real part of my range.</p>
+      </div>
+      <div class="tl-item">
+        <div class="yr">2016 →</div>
+        <h4>Lowe's</h4>
+        <p>Founded the India GCC product management practice; built retail-scale observability across 200+ microservices.</p>
+      </div>
+      <div class="tl-item">
+        <div class="yr">Smarsh</div>
+        <h4>Flow &amp; Gating</h4>
+        <p>Founded Flow (CI/CD platform) and Gating (AI governance framework); led a 15-person Release Engineering org.</p>
+      </div>
+      <div class="tl-item">
+        <div class="yr">Oct 2025 →</div>
+        <h4>Independent Product Practitioner — AI Systems &amp; Applied Governance</h4>
+        <p>Advisory work with NewtonX and AlphaSights, alongside continued applied AI governance practice.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="contact-grid">
+      <div><span class="k">Email</span><span class="v"><a href="mailto:anil.varghese.1976@gmail.com">anil.varghese.1976@gmail.com</a></span></div>
+      <div><span class="k">Phone</span><span class="v">9150869482</span></div>
+      <div><span class="k">Location</span><span class="v">Chennai, India</span></div>
+    </div>
+    <p class="certs"><b>Certifications:</b> Anthropic AI Fluency · MCP Architecture · Claude Code · ISB Executive Product Management · CSM · CSPO</p>
+  </footer>
+</div>
+
+</body>
+</html>
